@@ -14,7 +14,7 @@ def generate_poetry(prompt):
         st.write(f"Creating a poem about: {prompt}")
         time.sleep(1)
         st.write("Here's your poem:")
-        model = genai.GenerativeModel('gemini-2.0-flash')
+        model = genai.GenerativeModel('gemini-2.5-flash')
         response = model.generate_content(f"Write a beautiful and creative poem about {prompt}")
         st.write(response.text)
 
