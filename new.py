@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd 
 import time
 import google.generativeai as genai
+import os
+from dotenv import load_dotenv
 
 def generate_poetry(prompt):
     if prompt:
@@ -14,7 +16,7 @@ def generate_poetry(prompt):
         st.write(f"Creating a poem about: {prompt}")
         time.sleep(1)
         st.write("Here's your poem:")
-        model = genai.GenerativeModel('gemini-2.5-flash')
+        model = genai.GenerativeModel('gemini-2.0-flash')
         response = model.generate_content(f"Write a beautiful and creative poem about {prompt}")
         st.write(response.text)
 
@@ -22,7 +24,8 @@ def generate_poetry(prompt):
 # I will write this function later 
 
 if __name__=="__main__":
-    API_KEY = "AIzaSyBfgKFnz-dzhOFIsyRJO81znTkVG-m3gl8"   # YOUR API
+    load_dotenv()
+    API_KEY = os.getenv('GEMINI_API_KEY')
     # initialize the client
     genai.configure(api_key=API_KEY)
     # title 
